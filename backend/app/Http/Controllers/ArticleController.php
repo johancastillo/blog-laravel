@@ -46,6 +46,8 @@ class ArticleController extends Controller
         $article->stock = $request->stock;
 
         $article->save();
+        
+        return $article;
 
     }
 
@@ -80,7 +82,7 @@ class ArticleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // Update Article
 
         $article = Article::findOrFail($request->id);
 
@@ -89,7 +91,10 @@ class ArticleController extends Controller
         $article->stock = $request->stock;
 
         $article->save();
+
+        return $article;
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -97,8 +102,13 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
         //
+
+        $article = Article::destroy($request->id);
+        return $article;
+
+        
     }
 }
